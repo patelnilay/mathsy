@@ -1,29 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mathsy/difficulty_page.dart';
 
-import 'difficulty_page.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    return MaterialApp(
-      title: 'Mathsy',
-      theme: ThemeData(
-        primaryColor: Colors.amber,
-        accentColor: Colors.teal[600],
-        fontFamily: 'Raleway',
-      ),
-      home: StartPage(),
-    );
-  }
-}
-
-class StartPage extends StatelessWidget {
+class QuestionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,19 +9,30 @@ class StartPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 40.0),
               child: Text(
-                "Mathsy",
+                "N+M",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 50,
-                  fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Raleway',
+                    fontSize: 50),
+              ),
+            ),
+            Container(
+              width: 200,
+              padding: EdgeInsets.only(top: 30),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'Answer Here'
                 ),
+                style: TextStyle(fontSize: 30),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(top: 30),
               child: Container(
+                width: 200.0,
+                height: 52.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                   gradient: LinearGradient(
@@ -57,17 +46,18 @@ class StartPage extends StatelessWidget {
                   ),
                 ),
                 child: FlatButton(
-                  padding: const EdgeInsets.only(
-                      top: 20.0, bottom: 20.0, left: 80.0, right: 80.0),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pop(
                       context,
                       MaterialPageRoute(builder: (context) => DifficultyPage()),
-                    );
+                    ); // Navigate back to first route when tapped.
                   },
                   child: Text(
-                    "START!",
-                    style: TextStyle(fontFamily: 'Raleway'),
+                    'BACK',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Raleway',
+                    ),
                   ),
                   textColor: Colors.white,
                   shape: new RoundedRectangleBorder(
@@ -75,18 +65,10 @@ class StartPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: Image(
-                  alignment: Alignment.bottomCenter,
-                  image: AssetImage('graphics/start_page.png')),
-            ),
+
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
