@@ -67,12 +67,15 @@ flutter:
     - asset: fonts/Raleway-Bold.ttf
     - asset: fonts/Raleway-ExtraBold.ttf
     - asset: fonts/Raleway-SemiBold.ttf
+  - family: Lobster-Two
+    fonts:
+    - asset: fonts/LobsterTwo-Regular.otf
+  - family: Domine
+    fonts:
+    - asset: fonts/Domine-Regular.ttf
+    - asset: fonts/Domine-Bold.ttf
 
-  #     - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  #
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
