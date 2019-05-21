@@ -1,23 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:mathsy/difficulty_page.dart';
+import 'package:mathsy/question_generator.dart';
 
-class QuestionsPage extends StatelessWidget {
+class QuestionWidget extends StatefulWidget {
+  @override
+  _QuestionWidgetState createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
+  Question question;
+
+  @override
+  void initState() {
+    question = QuestionsGenerator.generateQuestion();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 40.0),
+      child: Text(
+        "${question.phrase}",
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Raleway',
+            fontSize: 50),
+      ),
+    );
+  }
+}
+
+class QuestionsPage extends StatefulWidget {
+  @override
+  _QuestionsPageState createState() => _QuestionsPageState();
+}
+
+class _QuestionsPageState extends State<QuestionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 40.0),
-              child: Text(
-                "N+M",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Raleway',
-                    fontSize: 50),
-              ),
-            ),
+            QuestionWidget(),
             Container(
               width: 200,
               padding: EdgeInsets.only(top: 30),
@@ -25,6 +50,7 @@ class QuestionsPage extends StatelessWidget {
                 decoration: InputDecoration(
                     hintText: 'Answer Here'
                 ),
+                keyboardType: TextInputType.number,
                 style: TextStyle(fontSize: 30),
               ),
             ),
@@ -47,13 +73,10 @@ class QuestionsPage extends StatelessWidget {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(builder: (context) => DifficultyPage()),
-                    ); // Navigate back to first route when tapped.
+                    print(context.ancestorStateOfType(TypeMatcher<QuestionsPage>()));
                   },
                   child: Text(
-                    'BACK',
+                    'SUBMIT',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Raleway',
