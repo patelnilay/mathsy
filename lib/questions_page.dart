@@ -104,6 +104,43 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
+  generateNewQuestion() {
+    setState(() {
+      formController.clear();
+      question = QuestionsGenerator.generateQuestion();
+    });
+  }
+
+  int userScore = 0;
+
+  checkUserAnswer(String text) {
+    print("User score before IF: $userScore \n");
+    if (formController.text.isEmpty) {
+      userScore = userScore;
+      print("User score should have NOT been updated: $userScore \n");
+    } else if (int.parse(formController.text) == question.questionAnswer) {
+      userScore++;
+      print("User score should have been updated to: $userScore \n");
+    } else if (int.parse(formController.text) != question.questionAnswer) {
+      userScore = userScore;
+      print("User score should have NOT been updated: $userScore \n");
+    } else if (formController.text.isEmpty) {
+      print("THIS FUCKING RAN");
+      userScore = userScore;
+      print("User score should have NOT been updated: $userScore \n");
+    }
+
+    generateNewQuestion();
+  }
+
+  final formController = TextEditingController();
+
+  @override
+  void dispose() {
+    formController.dispose();
+    super.dispose();
+  }
+
   Question question;
 
   @override
@@ -133,6 +170,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
               width: 220,
               padding: EdgeInsets.only(top: 60),
               child: TextField(
+                controller: formController,
+                onSubmitted: checkUserAnswer,
                 decoration: InputDecoration(hintText: 'Answer Here'),
                 keyboardType: TextInputType.number,
                 style: TextStyle(fontSize: 30),
@@ -158,9 +197,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    setState(() {
-                      question = QuestionsGenerator.generateQuestion();
-                    });
+                    checkUserAnswer("");
                   },
                   child: Text(
                     'SUBMIT',
