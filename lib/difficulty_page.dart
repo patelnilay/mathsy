@@ -16,7 +16,7 @@ class DifficultyPage extends StatelessWidget {
                   "Mathsy",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 50,
+                    fontSize: 70,
                     fontFamily: 'Raleway',
                   ),
                 ),
@@ -50,6 +50,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -87,6 +88,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -124,6 +126,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -161,6 +164,8 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Raleway',
+                        fontSize: 30,
+
                       ),
                     ),
                     textColor: Colors.white,

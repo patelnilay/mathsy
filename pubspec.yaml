@@ -67,14 +67,12 @@ flutter:
     - asset: fonts/Raleway-Bold.ttf
     - asset: fonts/Raleway-ExtraBold.ttf
     - asset: fonts/Raleway-SemiBold.ttf
-  - family: Lobster-Two
+  - family: ONEDAY
     fonts:
-    - asset: fonts/LobsterTwo-Regular.otf
-  - family: Domine
+    - asset: fonts/ONEDAY.ttf
+  - family: Lato
     fonts:
-    - asset: fonts/Domine-Regular.ttf
-    - asset: fonts/Domine-Bold.ttf
-
+    - asset: fonts/Lato-Semibold.ttf
   #
   #
   # For details regarding fonts from package dependencies,

@@ -12,8 +12,8 @@ class _QuestionsPageState extends State<QuestionsPage> {
   int questionCounter = 0;
   generateNewQuestion() {
 
-    if (questionCounter == 10){
-      Navigator.push(
+    if (questionCounter == 9){
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ScorePage(score: userScore,)),
       );
@@ -29,16 +29,12 @@ class _QuestionsPageState extends State<QuestionsPage> {
   int userScore = 0;
 
   checkUserAnswer(String text) {
-    print("User score before IF: $userScore \n");
     if (formController.text.isEmpty) {
       userScore = userScore;
-      print("User score should have NOT been updated: $userScore");
     } else if (int.parse(formController.text) == question.questionAnswer) {
       userScore++;
-      print("User score should have been updated to: $userScore");
     } else if (int.parse(formController.text) != question.questionAnswer) {
       userScore = userScore;
-      print("User score should have NOT been updated: $userScore");
     }
 
     generateNewQuestion();
@@ -70,30 +66,29 @@ class _QuestionsPageState extends State<QuestionsPage> {
               child: Text(
                 "${question.phrase}",
                 style: TextStyle(
-//                  fontWeight: FontWeight.bold,
-                  fontSize: 90,
-                  fontFamily: 'Lobster-Two',
+                  fontSize: 80,
+                  fontFamily: 'Lato',
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
             Container(
               width: 220,
-              padding: EdgeInsets.only(top: 60),
+              padding: EdgeInsets.only(top: 50),
               child: TextField(
                 controller: formController,
                 onSubmitted: checkUserAnswer,
                 decoration: InputDecoration(hintText: 'Answer Here'),
                 keyboardType: TextInputType.number,
-                style: TextStyle(fontSize: 30),
+                style: TextStyle(fontSize: 30,fontFamily: "Raleway"),
                 textAlign: TextAlign.center,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 60),
               child: Container(
-                width: 200.0,
-                height: 52.0,
+                width: 220.0,
+                height: 72.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.0),
                   gradient: LinearGradient(
@@ -115,6 +110,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Raleway',
+                      fontSize: 25,
                     ),
                   ),
                   textColor: Colors.white,

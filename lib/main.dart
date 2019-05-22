@@ -36,7 +36,7 @@ class StartPage extends StatelessWidget {
                 "Mathsy",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 50,
+                  fontSize: 70,
                   fontFamily: 'Raleway',
                 ),
               ),
@@ -67,7 +67,10 @@ class StartPage extends StatelessWidget {
                   },
                   child: Text(
                     "START!",
-                    style: TextStyle(fontFamily: 'Raleway'),
+                    style: TextStyle(fontFamily: 'Raleway',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                   textColor: Colors.white,
                   shape: new RoundedRectangleBorder(
