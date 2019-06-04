@@ -5,6 +5,21 @@ class ScorePage extends StatelessWidget {
   final int score;
   ScorePage({Key key, @required this.score}) : super(key: key);
 
+  String message;
+  String scoreMessage(){
+    if (score < 5){
+      message="Aw, Good Effort!";
+    } else if ((score >= 5) && (score < 8)){
+      message = "Great Job, you were close!";
+    } else if ((score >= 8) && (score < 10)){
+      message = "So Close!!";
+    } else if (score == 10){
+      message = "Spot On";
+    }
+
+    return message;
+  }
+
 @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,28 +33,29 @@ class ScorePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 90),
                   child: Text(
-                    "WELL DONE!",
+                    scoreMessage(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 50,
+                      fontSize: 40,
                       fontFamily: 'Raleway',
-                      color: Colors.teal[200],
+                      color: Colors.red[700],
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50),
                   child: Text(
-                    "YOU SCORED $score",
+                    "YOU SCORED $score/10",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      fontFamily: 'Raleway',
+                      fontFamily: 'Lato',
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 150.0),
+                  padding: const EdgeInsets.only(top: 130.0),
                   child: Center(
                     child: Container(
                       width: 220.0,
@@ -68,6 +84,7 @@ class ScorePage extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Raleway',
+                            fontSize: 30,
                           ),
                         ),
                         textColor: Colors.white,

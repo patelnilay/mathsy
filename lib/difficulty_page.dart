@@ -3,6 +3,8 @@ import 'package:mathsy/questions_page.dart';
 
 import 'main.dart';
 
+String pageDifficulty;
+
 class DifficultyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class DifficultyPage extends StatelessWidget {
                   "Mathsy",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 50,
+                    fontSize: 70,
                     fontFamily: 'Raleway',
                   ),
                 ),
@@ -40,9 +42,12 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
+                      pageDifficulty = "easy";
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QuestionsPage()),
+                        MaterialPageRoute(builder: (context) => QuestionsPage(
+                          questionDifficulty: pageDifficulty,
+                        )),
                       );
                     },
                     child: Text(
@@ -50,6 +55,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -77,9 +83,12 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
+                      pageDifficulty = "medium";
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QuestionsPage()),
+                        MaterialPageRoute(builder: (context) => QuestionsPage(
+                          questionDifficulty: pageDifficulty,
+                        )),
                       );
                     },
                     child: Text(
@@ -87,6 +96,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -114,9 +124,12 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
+                      pageDifficulty = "hard";
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => QuestionsPage()),
+                        MaterialPageRoute(builder: (context) => QuestionsPage(
+                          questionDifficulty: pageDifficulty,
+                        )),
                       );
                     },
                     child: Text(
@@ -124,6 +137,7 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Raleway',
                         fontWeight: FontWeight.bold,
+                        fontSize: 30,
                       ),
                     ),
                     textColor: Colors.white,
@@ -161,6 +175,8 @@ class DifficultyPage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Raleway',
+                        fontSize: 30,
+
                       ),
                     ),
                     textColor: Colors.white,
