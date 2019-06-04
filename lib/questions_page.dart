@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mathsy/question_generator.dart';
 import 'package:mathsy/score_page.dart';
+import 'dart:async';
 
 class QuestionsPage extends StatefulWidget {
   @override
@@ -8,21 +9,26 @@ class QuestionsPage extends StatefulWidget {
 }
 
 class _QuestionsPageState extends State<QuestionsPage> {
-
   int questionCounter = 0;
+
   generateNewQuestion() {
 
-    if (questionCounter == 9){
+    if (questionCounter == 9) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ScorePage(score: userScore,)),
+        MaterialPageRoute(
+            builder: (context) => ScorePage(
+                  score: userScore,
+                )),
       );
+      return;
     }
 
     setState(() {
       formController.clear();
-      questionCounter ++;
+      questionCounter++;
       question = QuestionsGenerator.generateQuestion();
+      questionTimer();
     });
   }
 
@@ -40,6 +46,13 @@ class _QuestionsPageState extends State<QuestionsPage> {
     generateNewQuestion();
   }
 
+  questionTimer() {
+    Timer(Duration(seconds: 10), () {
+      print("Yeah, this line is printed after 10 second");
+      generateNewQuestion();
+    });
+  }
+
   final formController = TextEditingController();
 
   @override
@@ -53,6 +66,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
   @override
   void initState() {
     question = QuestionsGenerator.generateQuestion();
+    questionTimer();
     super.initState();
   }
 
@@ -80,7 +94,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                 onSubmitted: checkUserAnswer,
                 decoration: InputDecoration(hintText: 'Answer Here'),
                 keyboardType: TextInputType.number,
-                style: TextStyle(fontSize: 30,fontFamily: "Raleway"),
+                style: TextStyle(fontSize: 30, fontFamily: "ONEDAY"),
                 textAlign: TextAlign.center,
               ),
             ),
