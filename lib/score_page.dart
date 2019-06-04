@@ -46,7 +46,7 @@ class ScorePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 50),
                   child: Text(
-                    "YOU SCORED $score",
+                    "YOU SCORED $score/10",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
