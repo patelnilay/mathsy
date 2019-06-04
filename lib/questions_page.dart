@@ -4,6 +4,10 @@ import 'package:mathsy/score_page.dart';
 import 'dart:async';
 
 class QuestionsPage extends StatefulWidget {
+  final String questionDifficulty;
+
+  QuestionsPage({Key key, @required this.questionDifficulty}) : super(key: key);
+
   @override
   _QuestionsPageState createState() => _QuestionsPageState();
 }
@@ -12,7 +16,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
   int questionCounter = 0;
 
   generateNewQuestion() {
-
     if (questionCounter == 9) {
       Navigator.pushReplacement(
         context,
@@ -47,10 +50,21 @@ class _QuestionsPageState extends State<QuestionsPage> {
   }
 
   questionTimer() {
-    Timer(Duration(seconds: 10), () {
-      print("Yeah, this line is printed after 10 second");
-      generateNewQuestion();
-    });
+    if (QuestionsPage.questionDifficulty == "easy") {
+      print("EASY WAS CHOSEN");
+    } else if (QuestionsPage.questionDifficulty == "medium") {
+      print("MEDIUM WAS CHOSEN");
+      Timer(Duration(seconds: 5), () {
+        print("Yeah, this line is printed after 5 second");
+        generateNewQuestion();
+      });
+    } else if (QuestionsPage.questionDifficulty == "hard") {
+      print("HARD WAS CHOSEN");
+      Timer(Duration(seconds: 3), () {
+        print("Yeah, this line is printed after 10 second");
+        generateNewQuestion();
+      });
+    }
   }
 
   final formController = TextEditingController();
