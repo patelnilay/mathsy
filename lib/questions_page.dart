@@ -1,12 +1,11 @@
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:mathsy/question_generator.dart';
 import 'package:mathsy/score_page.dart';
 import 'dart:async';
 
-import 'form.dart';
-
 class QuestionsPage extends StatefulWidget {
-  final String questionDifficulty;
+  String questionDifficulty;
 
   QuestionsPage({Key key, @required this.questionDifficulty}) : super(key: key);
 
@@ -16,9 +15,13 @@ class QuestionsPage extends StatefulWidget {
 
 class _QuestionsPageState extends State<QuestionsPage> {
   int questionCounter = 0;
+  RestartableTimer questionClock;
+  int trackSeconds;
+  int startSeconds;
 
   generateNewQuestion() {
     if (questionCounter == 9) {
+      questionClock.cancel();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -33,7 +36,6 @@ class _QuestionsPageState extends State<QuestionsPage> {
       formController.clear();
       questionCounter++;
       question = QuestionsGenerator.generateQuestion();
-      questionTimer();
     });
   }
 
@@ -52,21 +54,20 @@ class _QuestionsPageState extends State<QuestionsPage> {
   }
 
   questionTimer() {
-    if (QuestionsPage.questionDifficulty == "easy") {
-      print("EASY WAS CHOSEN");
-    } else if (QuestionsPage.questionDifficulty == "medium") {
-      print("MEDIUM WAS CHOSEN");
-      Timer(Duration(seconds: 5), () {
-        print("Yeah, this line is printed after 5 second");
-        generateNewQuestion();
-      });
-    } else if (QuestionsPage.questionDifficulty == "hard") {
-      print("HARD WAS CHOSEN");
-      Timer(Duration(seconds: 3), () {
-        print("Yeah, this line is printed after 10 second");
-        generateNewQuestion();
-      });
-    }
+    questionClock = RestartableTimer(
+      Duration(seconds: 1),
+      () {
+        setState(() {
+          questionClock.reset();
+          if (trackSeconds == 1) {
+            generateNewQuestion();
+            trackSeconds = startSeconds;
+          }
+          trackSeconds--;
+          print(trackSeconds);
+        });
+      },
+    );
   }
 
   final formController = TextEditingController();
@@ -84,6 +85,12 @@ class _QuestionsPageState extends State<QuestionsPage> {
     question = QuestionsGenerator.generateQuestion();
     questionTimer();
     super.initState();
+    if (widget.questionDifficulty == "medium") {
+      startSeconds = 21;
+    } else if (widget.questionDifficulty == "hard") {
+      startSeconds = 11;
+    }
+    trackSeconds = startSeconds;
   }
 
   Widget build(BuildContext context) {
@@ -91,6 +98,10 @@ class _QuestionsPageState extends State<QuestionsPage> {
       body: Center(
         child: Column(
           children: <Widget>[
+            Text(
+              trackSeconds.toString(),
+              style: TextStyle(fontFamily: 'Lato', fontSize: 30),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 60),
               child: Text(
@@ -134,6 +145,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                 child: FlatButton(
                   onPressed: () {
                     checkUserAnswer("");
+                    trackSeconds = startSeconds;
                   },
                   child: Text(
                     'SUBMIT',

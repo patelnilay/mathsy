@@ -3,7 +3,7 @@ import 'package:mathsy/questions_page.dart';
 
 import 'main.dart';
 
-String pageDifficulty;
+
 
 class DifficultyPage extends StatelessWidget {
   @override
@@ -42,11 +42,10 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
-                      pageDifficulty = "easy";
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => QuestionsPage(
-                          questionDifficulty: pageDifficulty,
+                          questionDifficulty: "easy",
                         )),
                       );
                     },
@@ -83,11 +82,10 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
-                      pageDifficulty = "medium";
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => QuestionsPage(
-                          questionDifficulty: pageDifficulty,
+                          questionDifficulty: "medium",
                         )),
                       );
                     },
@@ -124,11 +122,10 @@ class DifficultyPage extends StatelessWidget {
                   ),
                   child: FlatButton(
                     onPressed: () {
-                      pageDifficulty = "hard";
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => QuestionsPage(
-                          questionDifficulty: pageDifficulty,
+                          questionDifficulty: "hard",
                         )),
                       );
                     },
